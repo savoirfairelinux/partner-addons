@@ -3,7 +3,7 @@
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 from openerp import _, api, fields, models, SUPERUSER_ID
-from openerp.exceptions import Warning
+from openerp.exceptions import UserError, Warning
 
 TRACKED_FIELDS = {
     'name', 'date', 'title', 'parent_id', 'ref', 'lang',
@@ -94,8 +94,20 @@ class ResPartner(models.Model):
 
     @api.model
     def create(self, vals):
-        partner = super(ResPartner, self).create(vals)
         user = self.env.user
+        if (
+            'customer' in vals and
+            vals['customer'] and
+            not user.has_group(
+                'partner_tracking.group_partner_modification_authorised') and
+            user.has_group(
+                'partner_tracking.group_partner_modification_blocked')
+        ):
+            raise UserError(_(
+                "Permission to create a client denied."
+            ))
+
+        partner = super(ResPartner, self).create(vals)
         if user.has_group('partner_tracking.group_partner_validation'):
             partner.sudo().state = 'controlled'
         else:
@@ -111,6 +123,18 @@ class ResPartner(models.Model):
         is not part of the validation group
         """
         user = self.env.user
+        if (
+            'customer' in vals and
+            vals['customer'] and
+            not user.has_group(
+                'partner_tracking.group_partner_modification_authorised') and
+            user.has_group(
+                'partner_tracking.group_partner_modification_blocked')
+        ):
+            raise UserError(_(
+                "Permission to modify a client denied."
+            ))
+
         if 'state' in vals and not user.has_group(
             'partner_tracking.group_partner_validation'
         ):
@@ -122,7 +146,6 @@ class ResPartner(models.Model):
             vals['tracking_write_uid'] = user.id
 
         standard_partners = self.filtered(lambda p: not p.user_ids)
-
         if not user.has_group('partner_tracking.group_partner_validation'):
             tracked_fields = self.get_tracked_fields()
             for rec in standard_partners:

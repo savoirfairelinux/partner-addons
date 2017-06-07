@@ -2,4 +2,8 @@
 # © 2017 Savoir-faire Linux
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
-from . import test_res_partner
+from . import (
+    test_res_partner,
+    test_sale_order,
+    test_stock_picking,
+)

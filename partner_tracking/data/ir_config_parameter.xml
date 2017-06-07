@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+        <record id="cod_block_msg" model="ir.config_parameter">
+            <field name="key">partner.tracking.cod_block_msg</field>
+            <field name="value">The partner that you chosed is blocked.</field>
+        </record>
+
+        <record id="cod_warn_msg" model="ir.config_parameter">
+            <field name="key">partner.tracking.cod_warn_msg</field>
+            <field name="value">This is a warning message regarding the partner.</field>
+        </record>
+
+    </data>
+</odoo>

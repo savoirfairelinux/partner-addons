@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="rule_customers_only" model="ir.rule">
+            <field name="name">Customers Only</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="groups" eval="[(6, 0, [ref('group_partner_modification_blocked')])]"/>
+            <field name="domain_force">['customer', '=', False]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+        </record>
+
+        <record id="rule_all_partners" model="ir.rule">
+            <field name="name">All Partners</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="groups" eval="[(6, 0, [ref('group_partner_modification_authorised')])]"/>
+            <field name="domain_force">[]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+        </record>
+
+    </data>
+</odoo>

@@ -5,13 +5,14 @@
     <record id="res_partner_control_form_view" model="ir.ui.view">
       <field name="name">res.partner.control.form.view</field>
       <field name="model">res.partner</field>
-      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="inherit_id" ref="sale.res_partner_view_buttons"/>
       <field name="arch" type="xml">
         <sheet position="before">
           <header>
             <field name="state" widget="statusbar"/>
           </header>
         </sheet>
+        <xpath expr="//page[@name='internal_notes']//field[@name='sale_warn_msg']" position="replace"/>
       </field>
     </record>
 
