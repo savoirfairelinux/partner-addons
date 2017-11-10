@@ -9,6 +9,15 @@ class ResPartner(models.Model):
 
     _inherit = 'res.partner'
 
+    relation_count_str = fields.Char(
+        string='Relations',
+        compute='_compute_relation_count_str')
+
+    @api.depends('relation_count')
+    def _compute_relation_count_str(self):
+        for rec in self:
+            rec.relation_count_str = str(rec.relation_count)
+
     @api.onchange('parent_id')
     def onchange_parent_id(self):
         res = super(ResPartner, self).onchange_parent_id()
