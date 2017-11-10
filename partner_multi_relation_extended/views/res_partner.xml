@@ -48,6 +48,19 @@
     </field>
   </record>
 
+  <record id="tree_res_partner_multi_relation_extended" model="ir.ui.view">
+    <field name="name">res.partner.multi.relation.extended.tree</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_tree"/>
+    <field name="arch" type="xml">
+
+      <field name="display_name" position="after">
+        <field name="relation_count_str"/>
+      </field>
+
+    </field>
+  </record>
+
   <menuitem
             id="menu_res_partner_relation_contacts"
             sequence="2"

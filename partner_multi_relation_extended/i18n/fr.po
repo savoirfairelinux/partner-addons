@@ -164,6 +164,7 @@ msgstr ""
 
 #. module: partner_multi_relation_extended
 #: model:ir.ui.menu,name:partner_multi_relation_extended.menu_res_partner_relation_contacts
+#: model:ir.model.fields,field_description:partner_multi_relation_extended.field_res_partner_relation_count_str
 msgid "Relations"
 msgstr "Relations"
 
