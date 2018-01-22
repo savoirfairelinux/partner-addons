@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-# © 2017 Savoir-faire Linux
+# © 2017-2018 Savoir-faire Linux
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 {
     "name": "Partner relations - Extended",
-    "version": "10.0.1.0.0",
+    "version": "11.0.1.0.0",
     "author": "Savoir-faire Linux",
     'maintainer': 'Savoir-faire Linux',
     'website': 'http://www.savoirfairelinux.com',
@@ -11,8 +11,8 @@
     "category": "Customer Relationship Management",
     "license": "LGPL-3",
     "depends": [
-        'base_view_inheritance_extension',
-        'partner_multi_relation',
+        # 'base_view_inheritance_extension',  # server-tools
+        # 'partner_multi_relation',
         'contacts',
     ],
     'external_dependencies': {
