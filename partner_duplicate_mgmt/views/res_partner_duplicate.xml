@@ -26,10 +26,11 @@
                 </header>
                 <sheet>
                     <group col="4">
-                        <field name="merger_reason_id"/>
                         <field name="partner_preserved_id"
                             attrs="{'invisible': [('state', '!=', 'merged')]}"
                             readonly="1"/>
+                        <field name="merger_reason_id"
+                            attrs="{'invisible': [('state', '!=', 'merged')]}"/>
                         <field name="partner_1_id" readonly="1"/>
                         <field name="partner_2_id" readonly="1"/>
                     </group>
@@ -85,6 +86,7 @@
         <field name="model">res.partner.duplicate</field>
         <field name="arch" type="xml">
             <search>
+                <field name="partner_1_id" string="Partner" filter_domain=" ['|', ('partner_1_id', 'ilike', self),  ('partner_2_id', 'ilike', self)]"/>
                 <filter name="to_validate" string="To Validate" domain="[('state','=','to_validate')]"/>
                 <filter name="merged" string="Merged" domain="[('state','=','merged')]"/>
                 <filter name="resolved" string="Resolved (Not Duplicate)" domain="[('state','=','resolved')]"/>
