@@ -108,9 +108,8 @@ class ResPartner(models.Model):
             'name': indexed_name or '',
             'parent': self.parent_id.id or None,
         })
-        res = cr.dictfetchall()
 
-        return res
+        return cr.dictfetchall()
 
     @api.onchange('name', 'parent_id', 'company_type', 'is_company')
     def onchange_name(self):
@@ -141,14 +140,15 @@ class ResPartner(models.Model):
 
     def _create_duplicates(self):
         partners = self._get_duplicates()
-        records = self.env['res.partner.duplicate']
+        duplicates = self.env['res.partner']
         for partner in partners:
-            records |= self.env['res.partner.duplicate'].create({
-                'partner_1_id': self.id,
-                'partner_2_id': partner['id'],
+            self.env['res.partner.duplicate'].create({
+                'partner_1_id': min(self.id, partner['id']),
+                'partner_2_id': max(self.id, partner['id']),
             })
+            duplicates |= self.browse(partner['id'])
 
-        return records.mapped('partner_2_id')
+        return duplicates
 
     def _post_message_duplicates(self, duplicates):
         for record in self:
@@ -290,3 +290,17 @@ class ResPartner(models.Model):
             ('name', '=', 'Merge Selected Contacts')])
         if action:
             action.unlink()
+
+    @api.model
+    def name_search(self, name='', args=None, operator='ilike', limit=100):
+        if not self._context.get('duplicate_partner_1_id'):
+            return super(ResPartner, self).name_search(
+                name, args, operator, limit)
+
+        partner_1 = self.browse(self._context.get('duplicate_partner_1_id'))
+        partner_2 = self.browse(self._context.get('duplicate_partner_2_id'))
+        return (partner_1 | partner_2).name_get()
+
+    def _get_field_value(self, field_name):
+        field_value = getattr(self, field_name)
+        return self._fields[field_name].convert_to_write(field_value, self)

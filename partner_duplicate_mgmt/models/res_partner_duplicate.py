@@ -71,24 +71,24 @@ class ResPartnerDuplicate(models.Model):
         vals = {}
         for line in self.merge_line_ids:
             field_name = line.duplicate_field_id.technical_name
-            field_value = False
+            partner = False
 
             if (
                 self.partner_preserved_id == self.partner_1_id and
                 line.partner_2_selected
             ):
-                field_value = line.partner_2_value
+                partner = self.partner_2_id
 
             if (
                 self.partner_preserved_id == self.partner_2_id and
                 line.partner_1_selected
             ):
-                field_value = line.partner_1_value
+                partner = self.partner_1_id
 
-            if field_value:
-                if line.duplicate_field_id.type == 'many2one':
-                    field_value = getattr(self.partner_2_id, field_name).id
-                vals[field_name] = field_value
+            if partner:
+                field_value = partner._get_field_value(field_name)
+                if field_value:
+                    vals[field_name] = field_value
 
         self.partner_preserved_id.write(vals)
 
@@ -127,6 +127,14 @@ class ResPartnerDuplicate(models.Model):
 
         # Change duplicate state
         self.write({'state': 'merged'})
+
+        # Resolve all other duplicates linked to the partner archived
+        self.search([
+            '|',
+            ('partner_1_id', '=', partner_to_archive.id),
+            ('partner_2_id', '=', partner_to_archive.id),
+            ('state', '=', 'to_validate')
+        ]).action_resolve()
 
         return self.partner_preserved_id.get_formview_action()
 

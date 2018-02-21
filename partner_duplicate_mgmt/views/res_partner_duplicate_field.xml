@@ -6,10 +6,10 @@
         <field name="model">res.partner.duplicate.field</field>
         <field name="arch" type="xml">
             <tree string="Partner Duplicate Fields" editable="bottom">
-                <field name="field_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}"/>
+                <field name="sequence" widget="handle"/>
+                <field name="field_id" options="{'no_open': True, 'no_create_edit': True, 'no_create': True}" context="{'no_display_model_name': True}"/>
                 <field name="technical_name"/>
                 <field name="name"/>
-                <field name="sequence"/>
                 <field name="active"/>
             </tree>
       </field>
@@ -19,6 +19,7 @@
         <field name="name">Partner Duplicate Fields</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">res.partner.duplicate.field</field>
+        <field name="context">{'no_display_model_name': True}</field>
         <field name="view_mode">tree</field>
         <field name="view_type">form</field>
     </record>
