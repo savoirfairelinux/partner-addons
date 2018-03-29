@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <record id="city_validation_policy" model="ir.config_parameter">
+          <field name="key">google_city_validation.policy</field>
+          <field name="value">strict</field>
+    </record>
+  </data>
+</odoo>
