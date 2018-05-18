@@ -7,6 +7,7 @@ odoo.define('google_city_validation', function (require) {
     var core = require('web.core');
     var form_widgets = require('web.form_widgets');
     var Model = require('web.Model');
+    var warn = require('web.crash_manager');
     var _t = core._t;
 
     var CityWidget = form_widgets.FieldChar.extend({
@@ -31,17 +32,15 @@ odoo.define('google_city_validation', function (require) {
                         if (status != 'OK' ||
                          !results[0].types.includes("locality")) {
                              if (policy === 'strict') {
-                                 self.do_warn(
-                                 _t("The following city name is invalid :"),
-                                 self.get_value()
-                                 );
+                                 warn.show_warning(
+                                 {data: {
+                                 message: _t('The city name is invalid!')}});
                                  self.set_value('')
                              }
                              else {
-                                 self.do_warn(
-                                 _t("The following city name is invalid :"),
-                                 self.get_value()
-                                 );
+                                 warn.show_warning(
+                                 {data: {
+                                 message: _t('The city name is invalid!')}});
                              }
                          }
                     });
