@@ -1,0 +1,56 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* google_city_validation
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 10.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-05-24 11:40-0400\n"
+"PO-Revision-Date: 2018-05-24 11:44-0400\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: Rim BEN DHAOU <rim.bendhaou@savoirfairelinux.com>\n"
+"Language: fr\n"
+
+#. module: google_city_validation
+#: model:ir.ui.view,arch_db:google_city_validation.view_sale_config_settings
+msgid "City Validation"
+msgstr "Validation de ville"
+
+#. module: google_city_validation
+#: model:ir.model.fields,field_description:google_city_validation.field_sale_config_settings_city_validation_policy
+msgid "City validation policy"
+msgstr "politique de validation de ville"
+
+#. module: google_city_validation
+#: selection:sale.config.settings,city_validation_policy:0
+msgid "Soft"
+msgstr "Légère"
+
+#. module: google_city_validation
+#: model:ir.model.fields,help:google_city_validation.field_sale_config_settings_city_validation_policy
+msgid "Soft only warn the user / Strict delete the value of the city"
+msgstr "Légère: seulement avertir l'utilisateur / Strict: avertir et supprimer la valeur saisie"
+
+#. module: google_city_validation
+#: selection:sale.config.settings,city_validation_policy:0
+msgid "Strict"
+msgstr "Strict"
+
+#. module: google_city_validation
+#. openerp-web
+#: code:addons/google_city_validation/static/src/js/google_city_validation.js:37
+#: code:addons/google_city_validation/static/src/js/google_city_validation.js:43
+#, python-format
+msgid "The city name is invalid!"
+msgstr "Le nom de la ville est invalide"
+
+#. module: google_city_validation
+#: model:ir.model,name:google_city_validation.model_sale_config_settings
+msgid "sale.config.settings"
+msgstr "sale.config.settings"
