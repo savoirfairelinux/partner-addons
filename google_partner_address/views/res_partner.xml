@@ -41,7 +41,7 @@
                     class="oe_edit_only"
                     attrs="{'invisible': ['&amp;', ('type', '=', 'contact'), ('parent_id', '!=', False)]}"/>
                 <widget type="google_partner_address" class="place_blank"/>
-
+                <field name="copy_place"/>
                 <field
                     name="street"
                     string="Address"
@@ -70,6 +70,7 @@
                         <field name="zip" style="width: 32%" string="Postal Code / Zip"/>
                         <label for="google_partner_address" string="Place" class="oe_edit_only"/>
                         <widget type="google_partner_address" class="place_blank"/>
+                        <field name="copy_place"/>
                         <field name="street" string="Address"/>
                         <label for="street2" string="Street 2" invisible="1"/>
                         <field name="street2" nolabel="1"/>
@@ -93,6 +94,7 @@
                 <field name="zip" style="width: 32%" string="Postal Code / Zip"/>
                 <label for="google_partner_address" string="Place" class="oe_edit_only"/>
                 <widget type="google_partner_address" class="place_blank"/>
+                <field name="copy_place"/>
                 <field name="street" string="Address"/>
                 <label for="street2" string="Street 2" invisible="1"/>
                 <field name="street2" nolabel="1"/>

@@ -116,6 +116,7 @@ odoo.define('google_partner_address', function (require) {
             var country_id = this.set_country(address["country"]);
             this.set_state(address, country_id);
             this.set_postal_code(address);
+            this.field_manager.fields.copy_place.set_value(place.formatted_address);
         },
         set_street: function(address) {
             var address_parts = [];
