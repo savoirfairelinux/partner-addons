@@ -37,12 +37,12 @@ msgstr "Adresse complète"
 #. module: google_partner_address
 #: model:ir.ui.view,arch_db:google_partner_address.view_general_configuration
 msgid "Google Maps API"
-msgstr "Localisation (Google map)"
+msgstr "API Google Maps"
 
 #. module: google_partner_address
 #: model:ir.model.fields,field_description:google_partner_address.field_base_config_settings_google_maps_api_key
 msgid "Google maps api key"
-msgstr ""
+msgstr "Clé API Google Maps"
 
 #. module: google_partner_address
 #: model:ir.model.fields,field_description:google_partner_address.field_base_config_settings_google_maps_api_uri
@@ -109,9 +109,3 @@ msgstr "et collez le ici"
 #: model:ir.model,name:google_partner_address.model_base_config_settings
 msgid "base.config.settings"
 msgstr ""
-
-#~ msgid "Generate Google Maps API Key"
-#~ msgstr "Générer la clé Google Maps API"
-
-#~ msgid "Google Maps Api"
-#~ msgstr "Google Maps Api"
